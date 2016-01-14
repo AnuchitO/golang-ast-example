@@ -21,6 +21,9 @@ func main() {
 	fmt.Println("-------------------------------------")
 	ast.Walk(new(ImportVisitor), file)
 	printer.Fprint(os.Stdout, fset, file)
+
+	f, _ := os.Create("/tmp/new_simple.go")
+	printer.Fprint(f, fset, file)
 }
 
 type FuncVisitor struct {
